@@ -13,7 +13,7 @@ jobs:
     name: Gitleaks
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.0
         with: {fetch-depth: 0}
 
       - name: Check for GitLeaks
@@ -24,9 +24,9 @@ jobs:
     runs-on: ubuntu-20.04
     env: {FORCE_COLOR: 'true'}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with: {node-version: '20'}
 
       - uses: actions/cache@v4
@@ -48,9 +48,9 @@ jobs:
       dist-changed: ${{ steps.state.outputs.changed }}
     env: {FORCE_COLOR: 'true'}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with: {node-version: '20'}
 
       - uses: actions/cache@v4
@@ -65,7 +65,7 @@ jobs:
 
       - run: yarn build
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with: {name: dist, path: ./dist/, retention-days: 1}
 
       - id: state
@@ -80,12 +80,12 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.0
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with: {name: dist, path: ./dist/}
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: Automatic distributive rebuild
 
@@ -93,7 +93,7 @@ jobs:
     name: Run action
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.0
 
       - name: Run this action (one url)
         uses: ./
